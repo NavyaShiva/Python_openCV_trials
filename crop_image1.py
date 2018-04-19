@@ -1,11 +1,14 @@
 from PIL import Image
 import os
+import numpy as np
 
-image_obj = Image.open(os.path.abspath("entry_exit.jpg"))
-area = (100, 100, 100, 100)
-cropped_image = image_obj.crop(area)
+def get_cropped_image(image_path):
+    im = Image.open(image_path).convert('L')
+    cropped_img = im.crop((110,180,1000,600))
+    return np.array(cropped_img)
 
-image_obj.show()
-#assert isinstance(cropped_image, object)
-cropped_image.show()
+
+if __name__ == "__main__":
+    new_image = get_cropped_image(os.path.abspath("car"))
+    print(new_image)
 
